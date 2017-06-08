@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="monApp">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="JS/angular.min.js" type="text/javascript"></script>
+    </head>
+    <body ng-controller="menuController">
+
+        <div><h1>Nouveau film</h1></div>
+
+        <fieldset>
+            <label>Titre</label>
+            <input ng-model="titre" type="text" />
+            <label>Année</label>
+            <input ng-model="annee" type="number" />
+            <input type="button" value="Ajouter" ng-click="ajouter()"/>
+
+        </fieldset>
+
+        {{titre}}  {{annee}}
+        <div>
+            <h1>Liste des Films</h1>
+            
+            Taille page:
+            <select ng-model="taillepage">
+                <option value="5">5</option> 
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>   
+                
+                
+            </select>
+            <table>
+
+                <tr>
+
+                    <th>TITRE</th>
+                    <th>ANNEE</th>
+                </tr> 
+                <tr ng-repeat="f in films|limitTo:taillepage">  
+                    <td>
+
+                        {{f.titre| uppercase }}
+
+                    </td>
+
+                    <td>
+
+                        {{f.annee}}
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+                    var app = angular.module('monApp', []);
+                    app.controller("menuController", ['$scope', '$http', function ($scope, $http) {
+
+
+
+                            $scope.taillepage = 5;
+
+
+
+                            $scope.titre = "votre titre";
+                            $scope.annee = 2017;
+
+
+
+                            $scope.films = [{titre: 'Scarface',
+                                    annee: '2006'},
+
+                                {
+                                    titre: 'dracula',
+                                    annee: 2005
+
+                                },
+
+                                {
+                                    titre: 'espion',
+                                    annee: 2004
+
+                                }
+
+                            ];
+
+                            $scope.ajouter = function () {
+                                var objetfilm = {
+                                    titre: $scope.titre,
+                                    annee: $scope.annee
+                                };
+
+                                $scope.films.push(objetfilm)
+                            }
+
+                        }]);
+
+        </script>
+    </body>
+</html>

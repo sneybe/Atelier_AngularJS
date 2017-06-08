@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="monApp">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="JS/angular.min.js" type="text/javascript"></script>
+    </head>
+    <body ng-controller="menuController">
+
+        <h1>
+            {{titre|uppercase}}
+            <br> {{ calculSomme(10, 5)}}
+        </h1>
+
+
+
+
+
+
+        <script type="text/javascript">
+                    var app = angular.module('monApp', []);
+                    app.controller("menuController", ['$scope', '$http', function ($scope, $http) {
+                            $scope.calculSomme = function (a, b) {
+
+                                return a + b;
+                            }
+                            $scope.titre = "coucou c'est moi";
+
+                        }]);
+
+        </script>
+    </body>
+</html>
